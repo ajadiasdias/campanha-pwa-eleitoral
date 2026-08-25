@@ -1,115 +1,85 @@
-const stats = [
-  { label: 'Lideranças ativas', value: '128', change: '+12% este mês' },
-  { label: 'Apoiadores cadastrados', value: '4.892', change: '+328 na semana' },
-  { label: 'Missões concluídas', value: '1.274', change: '84% de taxa de conclusão' },
-  { label: 'Demandas registradas', value: '316', change: '47 em análise prioritária' },
-];
+import { AdminHeader } from '@/components/admin/admin-header';
+import { RecentDemands } from '@/components/admin/recent-demands';
+import { TopLeadersTable } from '@/components/admin/top-leaders-table';
+import { SectionCard } from '@/components/ui/section-card';
+import { StatCard } from '@/components/ui/stat-card';
 
-const leaders = [
-  { name: 'Maria Souza', region: 'Zona Norte', supporters: 182, points: 1240 },
-  { name: 'Carlos Lima', region: 'Zona Leste', supporters: 166, points: 1175 },
-  { name: 'Ana Oliveira', region: 'Centro', supporters: 149, points: 1090 },
-  { name: 'João Ferreira', region: 'Zona Sul', supporters: 131, points: 980 },
+const stats = [
+  { label: 'Liderancas ativas', value: '128', hint: '+12 na ultima semana' },
+  { label: 'Apoiadores cadastrados', value: '4.892', hint: '+386 novos cadastros' },
+  { label: 'Missoes concluidas', value: '1.274', hint: '83% de taxa de conclusao' },
+  { label: 'Demandas abertas', value: '96', hint: '31 em bairros prioritarios' },
 ];
 
 export default function AdminPage() {
   return (
-    <main className="min-h-screen bg-slate-50 p-4 md:p-8">
-      <div className="mx-auto max-w-7xl space-y-8">
-        <header className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-          <div>
-            <p className="text-sm font-medium uppercase tracking-wide text-brand-600">Painel administrativo</p>
-            <h1 className="text-3xl font-bold text-slate-900">Visão geral da campanha</h1>
-            <p className="mt-2 text-slate-600">Monitore a mobilização de base, o desempenho das lideranças e a capilaridade regional.</p>
-          </div>
-          <button className="rounded-xl bg-brand-700 px-5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-brand-800">
-            Criar nova missão
-          </button>
-        </header>
+    <main className="min-h-screen bg-slate-100">
+      <div className="mx-auto flex max-w-7xl flex-col gap-6 px-4 py-6 md:px-6 md:py-8">
+        <AdminHeader />
 
-        <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-          {stats.map((item) => (
-            <div key={item.label} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-              <p className="text-sm text-slate-500">{item.label}</p>
-              <p className="mt-3 text-3xl font-bold text-slate-900">{item.value}</p>
-              <p className="mt-2 text-sm font-medium text-emerald-600">{item.change}</p>
-            </div>
+        <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          {stats.map((stat) => (
+            <StatCard key={stat.label} label={stat.label} value={stat.value} hint={stat.hint} />
           ))}
         </section>
 
-        <section className="grid gap-6 lg:grid-cols-[1.4fr,0.9fr]">
-          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-            <div className="flex items-center justify-between">
-              <div>
-                <h2 className="text-xl font-semibold text-slate-900">Ranking de lideranças</h2>
-                <p className="mt-1 text-sm text-slate-500">Top desempenho por apoiadores e pontuação.</p>
+        <section className="grid gap-6 xl:grid-cols-[1.5fr_1fr]">
+          <SectionCard
+            title="Ranking de liderancas"
+            subtitle="Desempenho consolidado por apoiadores mobilizados e pontos de missoes"
+          >
+            <TopLeadersTable />
+          </SectionCard>
+
+          <SectionCard
+            title="Radar de demandas"
+            subtitle="Ocorrencias recentes registradas no territorio"
+          >
+            <RecentDemands />
+          </SectionCard>
+        </section>
+
+        <section className="grid gap-6 lg:grid-cols-3">
+          <SectionCard title="Missoes em destaque" subtitle="Acoes com maior adesao nesta semana">
+            <div className="space-y-3 text-sm text-slate-600">
+              <div className="rounded-2xl bg-slate-50 p-4">
+                <p className="font-semibold text-slate-900">Compartilhar agenda de eventos no WhatsApp</p>
+                <p className="mt-1">312 liderancas engajadas</p>
               </div>
-              <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-600">Atualizado hoje</span>
-            </div>
-
-            <div className="mt-6 overflow-hidden rounded-xl border border-slate-200">
-              <table className="min-w-full divide-y divide-slate-200 text-left">
-                <thead className="bg-slate-50 text-sm text-slate-500">
-                  <tr>
-                    <th className="px-4 py-3 font-medium">Liderança</th>
-                    <th className="px-4 py-3 font-medium">Região</th>
-                    <th className="px-4 py-3 font-medium">Apoiadores</th>
-                    <th className="px-4 py-3 font-medium">Pontos</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-100 bg-white">
-                  {leaders.map((leader, index) => (
-                    <tr key={leader.name}>
-                      <td className="px-4 py-4">
-                        <div className="flex items-center gap-3">
-                          <div className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-100 font-semibold text-brand-700">
-                            {index + 1}
-                          </div>
-                          <span className="font-medium text-slate-900">{leader.name}</span>
-                        </div>
-                      </td>
-                      <td className="px-4 py-4 text-slate-600">{leader.region}</td>
-                      <td className="px-4 py-4 text-slate-900">{leader.supporters}</td>
-                      <td className="px-4 py-4 font-semibold text-slate-900">{leader.points}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-          <div className="space-y-6">
-            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-              <h2 className="text-xl font-semibold text-slate-900">Regiões estratégicas</h2>
-              <div className="mt-5 space-y-4">
-                {[
-                  { name: 'Zona Norte', progress: 82 },
-                  { name: 'Zona Leste', progress: 74 },
-                  { name: 'Centro', progress: 67 },
-                  { name: 'Zona Sul', progress: 59 },
-                ].map((region) => (
-                  <div key={region.name}>
-                    <div className="mb-2 flex items-center justify-between text-sm">
-                      <span className="font-medium text-slate-700">{region.name}</span>
-                      <span className="text-slate-500">{region.progress}%</span>
-                    </div>
-                    <div className="h-2 rounded-full bg-slate-100">
-                      <div className="h-2 rounded-full bg-brand-700" style={{ width: `${region.progress}%` }} />
-                    </div>
-                  </div>
-                ))}
+              <div className="rounded-2xl bg-slate-50 p-4">
+                <p className="font-semibold text-slate-900">Captar novos apoiadores no bairro</p>
+                <p className="mt-1">248 liderancas em execucao</p>
               </div>
             </div>
+          </SectionCard>
 
-            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-              <h2 className="text-xl font-semibold text-slate-900">Alertas rápidos</h2>
-              <div className="mt-4 space-y-3 text-sm text-slate-600">
-                <div className="rounded-xl bg-amber-50 p-4 text-amber-800">12 missões aguardando aprovação de comprovante.</div>
-                <div className="rounded-xl bg-rose-50 p-4 text-rose-800">8 demandas críticas relacionadas a infraestrutura urbana.</div>
-                <div className="rounded-xl bg-emerald-50 p-4 text-emerald-800">Nova arte de WhatsApp liberada para todas as lideranças.</div>
+          <SectionCard title="Central da verdade" subtitle="Alertas e conteudos prioritarios">
+            <div className="space-y-3 text-sm text-slate-600">
+              <div className="rounded-2xl border border-rose-200 bg-rose-50 p-4 text-rose-700">
+                Novo alerta de fake news em circulacao na Zona Leste.
+              </div>
+              <div className="rounded-2xl bg-slate-50 p-4">
+                18 materiais novos publicados nas ultimas 24 horas.
               </div>
             </div>
-          </div>
+          </SectionCard>
+
+          <SectionCard title="Coordenacao regional" subtitle="Visao rapida de cobertura territorial">
+            <div className="space-y-3 text-sm text-slate-600">
+              <div className="flex items-center justify-between rounded-2xl bg-slate-50 p-4">
+                <span>Zona Norte</span>
+                <span className="font-semibold text-emerald-600">Cobertura alta</span>
+              </div>
+              <div className="flex items-center justify-between rounded-2xl bg-slate-50 p-4">
+                <span>Centro</span>
+                <span className="font-semibold text-amber-600">Atencao</span>
+              </div>
+              <div className="flex items-center justify-between rounded-2xl bg-slate-50 p-4">
+                <span>Zona Sul</span>
+                <span className="font-semibold text-emerald-600">Cobertura alta</span>
+              </div>
+            </div>
+          </SectionCard>
         </section>
       </div>
     </main>

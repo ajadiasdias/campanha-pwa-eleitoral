@@ -1,12 +1,13 @@
 import './globals.css';
 import type { Metadata } from 'next';
+import { ReactNode } from 'react';
 
 export const metadata: Metadata = {
   title: 'Campanha PWA Eleitoral',
-  description: 'Gestão eleitoral e mobilização de base',
+  description: 'PWA de gestao eleitoral e mobilizacao de base',
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="pt-BR">
       <body>{children}</body>

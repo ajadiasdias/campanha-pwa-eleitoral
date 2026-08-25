@@ -1,32 +1,30 @@
-# campanha-pwa-eleitoral
+# Campanha PWA Eleitoral
 
-PWA de gestão eleitoral e mobilização de base para coordenação de campanhas políticas regionais.
+PWA de gestao eleitoral e mobilizacao de base para coordenacao de campanhas politicas regionais.
 
 ## Stack
 
 - Next.js 14
-- React
+- React 18
+- TypeScript
 - Tailwind CSS
 - Supabase
-- TypeScript
 
-## Módulos principais
+## Rotas iniciais
 
-- CRM de mobilização com indicação por liderança
-- Missões e gamificação
-- Demandas georreferenciadas
-- Central de materiais e avisos
+- `/` - landing page
+- `/admin` - dashboard principal do admin
+- `/lideranca` - experiencia mobile da lideranca
 
-## Perfis
+## Proximos modulos
 
-- Admin/Agência
-- Coordenador de Região
-- Liderança
+- autenticacao e permissoes por perfil
+- CRM de mobilizacao com indicacao
+- missoes e gamificacao
+- demandas georreferenciadas
+- central de materiais
+- mural e notificacoes
 
-## Próximos passos
+## Deploy
 
-1. Estruturar a base Next.js
-2. Configurar Supabase
-3. Implementar autenticação e permissões
-4. Criar dashboards por perfil
-5. Publicar o PWA
+Este projeto esta pronto para ser importado em plataformas como Vercel e Cloudflare Pages.

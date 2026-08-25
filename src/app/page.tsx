@@ -1,33 +1,32 @@
-import Link from 'next/link';
-
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-slate-100 to-white p-6">
-      <div className="mx-auto flex min-h-[90vh] max-w-5xl flex-col justify-center gap-8">
-        <div className="space-y-4">
-          <span className="inline-flex rounded-full bg-brand-100 px-3 py-1 text-sm font-medium text-brand-700">
-            PWA de Gestão Eleitoral
-          </span>
-          <h1 className="max-w-3xl text-4xl font-bold tracking-tight text-slate-900 md:text-6xl">
-            Mobilização política com foco em coordenação, liderança e inteligência territorial.
-          </h1>
-          <p className="max-w-2xl text-lg text-slate-600">
-            Estrutura inicial com painel administrativo, experiência mobile para lideranças e base pronta para autenticação, missões, CRM e demandas georreferenciadas.
-          </p>
-        </div>
+    <main className="min-h-screen bg-slate-950 text-white">
+      <section className="mx-auto flex min-h-screen max-w-6xl flex-col justify-center px-6 py-16">
+        <span className="w-fit rounded-full bg-blue-500/20 px-4 py-2 text-sm font-medium text-blue-200">
+          PWA de mobilizacao politica
+        </span>
+        <h1 className="mt-6 max-w-4xl text-4xl font-bold leading-tight md:text-6xl">
+          Gestao de campanha com foco em liderancas, territorio e execucao em campo.
+        </h1>
+        <p className="mt-6 max-w-2xl text-base text-slate-300 md:text-lg">
+          Uma base digital para organizar coordenadores, liderancas, apoiadores, missoes, materiais e demandas locais em uma experiencia mobile-first.
+        </p>
 
-        <div className="grid gap-4 md:grid-cols-2">
-          <Link href="/admin" className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:shadow-md">
-            <h2 className="text-xl font-semibold text-slate-900">Dashboard Admin</h2>
-            <p className="mt-2 text-slate-600">Acompanhe lideranças, apoiadores, missões e indicadores estratégicos.</p>
-          </Link>
-
-          <Link href="/lideranca" className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:shadow-md">
-            <h2 className="text-xl font-semibold text-slate-900">Área da Liderança</h2>
-            <p className="mt-2 text-slate-600">Visual mobile com ranking, missões, materiais e navegação simplificada.</p>
-          </Link>
+        <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+          <a
+            href="/admin"
+            className="rounded-2xl bg-blue-600 px-6 py-4 text-center text-sm font-semibold text-white shadow-lg shadow-blue-900/30"
+          >
+            Ver dashboard do admin
+          </a>
+          <a
+            href="/lideranca"
+            className="rounded-2xl border border-slate-700 px-6 py-4 text-center text-sm font-semibold text-slate-100"
+          >
+            Ver experiencia mobile da lideranca
+          </a>
         </div>
-      </div>
+      </section>
     </main>
   );
 }
